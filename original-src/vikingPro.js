@@ -133,17 +133,6 @@ class War {
         }
     }
 
-
-    startWar() {
-
-        const vikingArmySize = prompt("How many Vikings have sailed on this raid?");
-        alert("Great. " + vikingArmySize + " angry Vikings have sailed to British shores...");
-        const saxonArmySize = prompt("How many Saxons have come to defend their land?")
-        alert("Excellent. " + saxonArmySize + " brave Saxons are waiting for them at the beach.");
-
-    }
-    
-
 }
 
 function runWar() {
