@@ -1,0 +1,165 @@
+body {
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    font-family: "Verdana";
+    color: whitesmoke;
+    background-color: black;
+}
+
+#main-menu {
+padding: 5% 10%;
+display: flex;
+flex-direction: column;
+align-items: center;
+}
+
+#game-screen {
+display: none;
+flex-direction: row;
+width: 100%;
+height: 100vh;
+}
+
+#game-end {
+display: none;
+flex-direction: column;
+align-items: center;
+}
+
+#main-menu p {
+font-size: 14px;
+}
+
+#ship-on-water {
+    flex: 0 0 10%;
+    height: 100vh;
+    background-image: url('../images/Shore.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#saxon-village {
+    flex: 0 0 10%;
+    height: 100vh;
+    background-image: url('../images/Village.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#battle-ground {
+    flex: 0 0 80%;
+    height: 100vh;
+    background-color: orange;
+    /* background-image: url('../images/Village.png'); */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    position: relative;
+}
+
+#turns {
+    position: absolute;
+    width: 70px;
+    height: 20px;
+    top: 10px;
+    left: 500px;
+    background-color: white;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#turn-text {
+    color: black;
+    font-weight: bold;
+}
+
+
+#viking-one {
+    top: 50px;
+    left: 300px;
+}
+
+#viking-two {
+    top: 250px;
+    left: 300px;
+}
+
+#viking-three {
+    top: 450px;
+    left: 300px;
+}
+
+#viking-four {
+    top: 650px;
+    left: 300px;
+}
+
+
+#saxon-one {
+    top: 50px;
+    left: 700px;
+}
+
+#saxon-two {
+    top: 250px;
+    left: 700px;
+}
+
+#saxon-three {
+    top: 450px;
+    left: 700px;
+}
+
+#saxon-four {
+    top: 650px;
+    left: 700px;
+}
+
+.logo-img {
+width: 350px;
+margin: 20px;
+}
+
+.viking,
+.saxon > * {
+    transition: left 0.5s ease-in-out;
+}
+
+.viking {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background-color: red;
+}
+
+.saxon {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background-color: blue;
+}
+
+.viking-active {
+    outline: 3px solid yellow;
+}
+
+
+body button {
+font-size: 30px;
+background-color: #7d6716;
+color: #fff;
+padding: 20px 40px;
+border: 0;
+box-shadow: 0;
+border-radius: 5px;
+margin-bottom: 20px;
+}
+

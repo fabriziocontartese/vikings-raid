@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="./styles/styles.css" />
+    <title>Vikings' Raid</title>
+  </head>
+  
+  <body>
+    <main>
+      <!-- #main-menu is initially shown on the game start screen -->
+      <div id="main-menu">
+        <div>
+          <img src="./images/logo.png" alt="" class="logo-img"/>
+        </div>
+        <div>
+          <button id="start-button">Start Game</button>
+        </div>
+        <div>
+          <h2>Rules</h2>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            Ut enim ad minim veniam, quis nostrud exercitation ullamco
+            laboris nisi ut aliquip ex ea commodo consequat.
+            Duis aute irure dolor in reprehenderit in voluptate velit
+            esse cillum dolore eu fugiat nulla pariatur.
+          </p>
+        </div>
+      </div>
+
+      <!-- #game-screen is initially hidden using CSS style display: none -->
+      <div id="game-screen">
+        <div id="ship-on-water"></div>
+        <div id="battle-ground">
+          <div id="turns">
+            <div id="turn-text">
+              Turn: 0
+            </div>
+          </div>
+          <div id="viking-line">
+            <div id="viking-one" class="viking"></div>
+            <div id="viking-two" class="viking"></div>
+            <div id="viking-three" class="viking"></div>
+            <div id="viking-four" class="viking"></div>
+          </div>
+          <div id="saxon-line">
+            <div id="saxon-one" class="saxon"></div>
+            <div id="saxon-two" class="saxon"></div>
+            <div id="saxon-three" class="saxon"></div>
+            <div id="saxon-four" class="saxon"></div>
+          </div>
+        </div>
+        <div id="saxon-village"></div>
+      </div>
+
+      <!-- #game-end is initially hidden using CSS style display: none -->
+      <div id="game-end" style="display: none">
+        <div>
+          <img src="./images/logo.png" alt="" class="logo-img" />
+          <h1>Game Over</h1>
+          <button id="back-to-menu">Back to Menu</button>
+        </div>
+      </div>      
+    </main>
+
+    <script type="text/javascript" src="js/units.js"></script>
+    <script type="text/javascript" src="js/ship.js"></script>
+    <script type="text/javascript" src="js/game.js"></script>
+    <script type="text/javascript" src="js/menu.js"></script>
+
+  </body>
+</html>
