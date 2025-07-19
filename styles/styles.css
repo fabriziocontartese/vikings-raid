@@ -140,9 +140,19 @@ margin: 20px;
 }
 
 .viking-active {
-    outline: 3px solid yellow;
-}
-
+    outline: none;
+    box-shadow: 0 0 15px 4px gold;
+    border-radius: 10px;
+    transition: box-shadow 0.3s ease-in-out;
+  }
+  
+  .saxon-targetable {
+    outline: none;
+    box-shadow: 0 0 15px 4px crimson;
+    border-radius: 10px;
+    transition: box-shadow 0.3s ease-in-out;
+  }
+  
 
 body button {
 font-size: 30px;

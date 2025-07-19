@@ -42,6 +42,7 @@ class Game {
                 viking.id.addEventListener('click', () => {
                     if (!this.vikingsThatAttacked.has(viking)) {
                         this.selectedViking = viking;
+                        this.highlightAvailableVikings();
                     }
                 });
         }); 
@@ -70,17 +71,50 @@ class Game {
     }
     
     highlightAvailableVikings() {
-        this.vikings.forEach(viking => {
-            const isAlive = viking.health > 0;
-            const hasAttacked = this.vikingsThatAttacked.has(viking);
+        // If no Viking is selected yet, show all available ones
+        if (!this.selectedViking) {
+            this.vikings.forEach(viking => {
+                const isAlive = viking.health > 0;
+                const hasAttacked = this.vikingsThatAttacked.has(viking);
     
-            if (isAlive && !hasAttacked) {
-                viking.id.classList.add("viking-active");
+                if (typeof viking.setReadyToAttack === 'function') {
+                    viking.setReadyToAttack(isAlive && !hasAttacked);
+                }
+    
+                if (isAlive && !hasAttacked) {
+                    viking.id.classList.add("viking-active");
+                } else {
+                    viking.id.classList.remove("viking-active");
+                }
+            });
+        } else {
+            // A Viking is selected → only highlight that one
+            this.vikings.forEach(viking => {
+                if (viking === this.selectedViking) {
+                    viking.id.classList.add("viking-active");
+                } else {
+                    viking.id.classList.remove("viking-active");
+                }
+            });
+        }
+    
+        // Highlight Saxons if a Viking is selected and can attack
+        this.saxons.forEach(saxon => {
+            const isSaxonAlive = saxon.health > 0;
+            const vikingCanAttack = this.selectedViking &&
+                !this.vikingsThatAttacked.has(this.selectedViking);
+    
+            if (isSaxonAlive && vikingCanAttack) {
+                saxon.id.classList.add("saxon-targetable");
             } else {
-                viking.id.classList.remove("viking-active");
+                saxon.id.classList.remove("saxon-targetable");
             }
         });
-    }    
+    }
+    
+    
+    
+    
 
     // Saxon automated attack
     saxonsAttack() {

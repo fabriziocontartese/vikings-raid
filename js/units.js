@@ -13,6 +13,24 @@ class Soldier {
     
         this.id.style.top = `${this.originalTop}px`;
         this.id.style.left = `${this.originalLeft}px`;
+
+        this.statsDiv = document.createElement('div');
+        this.statsDiv.style.position = "absolute";
+        this.statsDiv.style.top = "110%";
+        this.statsDiv.style.left = "0";
+        this.statsDiv.style.width = "100%";
+        this.statsDiv.style.fontSize = "12px";
+        this.statsDiv.style.color = "white";
+        this.statsDiv.style.textAlign = "center";
+        this.statsDiv.style.pointerEvents = "none"; // allow clicks to pass through
+        
+        this.id.appendChild(this.statsDiv);
+        this.updateStats();
+    
+    }
+    
+    updateStats() {
+        this.statsDiv.innerText = `❤️ ${this.health} | ⚔️ ${this.strength}`;
     }
     
 
@@ -22,7 +40,9 @@ class Soldier {
             this.id.style.opacity = 0.5;
             this.id.style.pointerEvents = "none";
         }
+        this.updateStats();
     }
+    
 
     moveTo(x, y) {
         this.id.style.left = `${x}px`;
