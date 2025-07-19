@@ -4,25 +4,67 @@ class Soldier {
         this.health = health;
         this.strength = strength;
         this.id = document.getElementById(elementId);
+    
+        this.id.style.position = "absolute";
+    
+        const computedStyles = window.getComputedStyle(this.id);
+        this.originalTop = parseInt(computedStyles.top, 10);
+        this.originalLeft = parseInt(computedStyles.left, 10);
+    
+        this.id.style.top = `${this.originalTop}px`;
+        this.id.style.left = `${this.originalLeft}px`;
     }
+    
 
     receiveDamage(damage) {
         this.health -= damage;
         if (this.health <= 0) {
-            this.id.style.opacity = 0.5; // Visual cue for dead
+            this.id.style.opacity = 0.5;
             this.id.style.pointerEvents = "none";
         }
     }
 
-    attack(enemy) {
-        console.log(`${this.name} attacks ${enemy.name}`);
-        enemy.receiveDamage(this.strength);
-    
-        // Only call if game instance exists
-        if (typeof game !== "undefined" && !game.gameIsOver) {
-            game.checkGameOver();
-        }
+    moveTo(x, y) {
+        this.id.style.left = `${x}px`;
+        this.id.style.top = `${y}px`;
     }
+
+    returnToOriginalPosition() {
+        this.moveTo(this.originalLeft, this.originalTop);
+    }
+
+    attack(enemy) {
+        const enemyTop = parseInt(enemy.id.style.top, 10);
+        const enemyLeft = parseInt(enemy.id.style.left, 10);
+    
+        const offsetX = this instanceof Viking ? -80 : 80;
+        const offsetY = 0;
+    
+        const attackerX = enemyLeft + offsetX;
+        const attackerY = enemyTop + offsetY;
+    
+        this.moveTo(attackerX, attackerY);
+        enemy.moveTo(enemyLeft, enemyTop);
+    
+        setTimeout(() => {
+            console.log(`${this.name} attacks ${enemy.name}`);
+            enemy.receiveDamage(this.strength);
+    
+            setTimeout(() => {
+                this.returnToOriginalPosition();
+                enemy.returnToOriginalPosition();
+    
+                // ✅ GAME OVER CHECK
+                const allVikingsDead = [Viking1, Viking2, Viking3, Viking4].every(v => v.health <= 0);
+                const allSaxonsDead = [Saxon1, Saxon2, Saxon3, Saxon4].every(s => s.health <= 0);
+                if (allVikingsDead || allSaxonsDead) {
+                    document.getElementById("game-screen").style.display = "none";
+                    document.getElementById("game-end").style.display = "flex";
+                }
+            }, 300);
+        }, 300);
+    }
+    
     
 }
 
@@ -36,35 +78,6 @@ class Viking extends Soldier{
     
 }
 
-    /*
-    class VikingMelee extends Viking {
-
-        constructor( ) {
-            super()
-
-        }
-    }
-
-    class VikingArcher extends Viking {
-
-        constructor( ) {
-            super()
-            
-        }
-    }
-
-    class VikingHero extends Viking {
-
-        constructor( ) {
-            super()
-            
-        }
-    }
-
-
-    */
-
-
 // Saxons
 class Saxon extends Soldier{
 
@@ -73,29 +86,6 @@ class Saxon extends Soldier{
     }
 
 }
-
-
-
-    /*
-    class SaxonMelee extends Viking {
-
-        constructor( ) {
-            super()
-            
-        }
-    }
-
-    class SaxonArcher extends Viking {
-
-        constructor( ) {
-        super()
-            
-        }
-    }
-
-
-    */
-
 
 
     // Hard-coded soldiers

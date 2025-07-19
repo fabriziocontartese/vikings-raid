@@ -27,22 +27,16 @@ class Game {
     }
     
     startTurn() {
-        // Check if all Vikings or all Saxons have zero health
-        const allVikingsDead = this.vikings.every(v => v.health <= 0);
-        const allSaxonsDead = this.saxons.every(s => s.health <= 0);
-        if (allVikingsDead || allSaxonsDead) {
-            this.gameScreen.style.display = "none";
-            this.gameEndScreen.style.display = "flex";
-            return;
-        }
-
+        // Turn change and reset values
         this.turn++;
+        console.log(`It's day number ${this.turn} of the raid`);
         this.vikingsThatAttacked.clear();
+        this.selectedViking = null;
         this.updateTurnText();
         this.highlightAvailableVikings();
+
     
-        this.selectedViking = null;
-    
+        // Viking attack selection
         if (!this.vikingListenersBound) {
             this.vikings.forEach(viking => {
                 viking.id.addEventListener('click', () => {
@@ -50,25 +44,26 @@ class Game {
                         this.selectedViking = viking;
                     }
                 });
-            });
+        }); 
     
-            this.saxons.forEach(saxon => {
-                saxon.id.addEventListener('click', () => {
-                    if (this.selectedViking && !this.vikingsThatAttacked.has(this.selectedViking)) {
-                        this.selectedViking.attack(saxon);
-                        this.vikingsThatAttacked.add(this.selectedViking);
-                        this.selectedViking = null;
-    
-                        this.highlightAvailableVikings();
-    
-                        if (this.vikingsThatAttacked.size === this.vikings.filter(v => v.health > 0).length) {
-                            setTimeout(() => this.saxonsAttack(), 1000);
-                        }
+        this.saxons.forEach(saxon => {
+            saxon.id.addEventListener('click', () => {
+                if (this.selectedViking && !this.vikingsThatAttacked.has(this.selectedViking)) {
+                    this.selectedViking.attack(saxon);
+                    this.vikingsThatAttacked.add(this.selectedViking);
+                    this.selectedViking = null;
+
+                    this.highlightAvailableVikings();
+
+                    if (this.vikingsThatAttacked.size === this.vikings.filter(v => v.health > 0).length) {
+                        setTimeout(() => this.saxonsAttack(), 1000);
                     }
-                });
+                }
             });
+        });
     
-            this.vikingListenersBound = true;
+        this.vikingListenersBound = true;
+
         } else {
             this.highlightAvailableVikings();
         }
@@ -87,33 +82,50 @@ class Game {
         });
     }    
 
+    // Saxon automated attack
     saxonsAttack() {
         const aliveVikings = () => this.vikings.filter(v => v.health > 0);
         const saxonsToAttack = this.saxons.filter(s => s.health > 0);
         let index = 0;
-    
+
+        const checkGameOver = () => {
+            const allVikingsDead = this.vikings.every(v => v.health <= 0);
+            const allSaxonsDead = this.saxons.every(s => s.health <= 0);
+            if (allVikingsDead || allSaxonsDead) {
+                this.gameScreen.style.display = "none";
+                this.gameEndScreen.style.display = "flex";
+                return true;
+            }
+            return false;
+        };
+
         const attackNext = () => {
-            if (index >= saxonsToAttack.length) {
-                this.startTurn();
+            if (index >= saxonsToAttack.length || checkGameOver()) {
+                if (!checkGameOver()) {
+                    this.startTurn();
+                }
                 return;
             }
-    
+
             const saxon = saxonsToAttack[index];
             const targets = aliveVikings();
-            if (targets.length === 0)  return;
-            
-    
+            if (targets.length === 0) {
+                checkGameOver();
+                return;
+            }
+
             const randomIndex = Math.floor(Math.random() * targets.length);
             const target = targets[randomIndex];
-    
+
             saxon.attack(target);
             index++;
-    
+
             setTimeout(attackNext, 1000);
         };
-    
+
         attackNext();
     }
+
     
 
     updateTurnText() {

@@ -7,12 +7,6 @@ window.onload = function () {
     game = new Game();
     
     game.startGame();
-
-    //Placeholder & check
-    console.log(
-      `Vikings: ${game.vikings.map(v => v.id).join(", ")}, ` +
-      `Saxons: ${game.saxons.map(s => s.id).join(", ")}`
-    );
   });
 
 
