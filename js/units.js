@@ -1,8 +1,9 @@
 class Soldier {
-    constructor(name, health, strength, elementId) {
+    constructor(name, health, strength, elementId, game) {
         this.name = name;
         this.health = health;
         this.strength = strength;
+        this.game = game;
         this.id = document.getElementById(elementId);
     
         this.id.style.position = "absolute";
@@ -74,13 +75,9 @@ class Soldier {
                 this.returnToOriginalPosition();
                 enemy.returnToOriginalPosition();
     
-                // ✅ GAME OVER CHECK
-                const allVikingsDead = [Viking1, Viking2, Viking3, Viking4].every(v => v.health <= 0);
-                const allSaxonsDead = [Saxon1, Saxon2, Saxon3, Saxon4].every(s => s.health <= 0);
-                if (allVikingsDead || allSaxonsDead) {
-                    document.getElementById("game-screen").style.display = "none";
-                    document.getElementById("game-end").style.display = "flex";
-                }
+                this.game.checkGameOver();
+
+
             }, 300);
         }, 300);
     }
@@ -91,8 +88,8 @@ class Soldier {
 
 // Vikings
 class Viking extends Soldier{
-    constructor(name, health, strength, id) {
-        super(name, health, strength, id)
+    constructor(name, health, strength, id, game) {
+        super(name, health, strength, id, game)
 
     }
     
@@ -101,24 +98,8 @@ class Viking extends Soldier{
 // Saxons
 class Saxon extends Soldier{
 
-    constructor(name, health, strength, id) {
-        super(name, health, strength, id)
+    constructor(name, health, strength, id, game) {
+        super(name, health, strength, id, game)
     }
 
 }
-
-
-    // Hard-coded soldiers
-
-    const Viking1 = new Viking("Viking1", 10, 5, "viking-one")
-    const Viking2 = new Viking("Viking2", 10, 5, "viking-two")
-    const Viking3 = new Viking("Viking3", 10, 5, "viking-three")
-    const Viking4 = new Viking("Viking4", 10, 5, "viking-four")
-
-
-    const Saxon1 = new Saxon("Saxon1", 20, 5, "saxon-one")
-    const Saxon2 = new Saxon("Saxon2", 10, 5, "saxon-two")
-    const Saxon3 = new Saxon("Saxon2", 10, 5, "saxon-three")
-    const Saxon4 = new Saxon("Saxon4", 10, 5, "saxon-four")
-
-

@@ -23,8 +23,19 @@
           <p><strong>RAID THE SAXON VILLAGE!</strong></p>
           <p>In turns, attack the Saxons until there are none left.</p>
           <p>To attack, click on the Viking you want to use and then on the targeted Saxon.</p>
+        </div>    
+      </div>
+
+      <!-- Difficulty screen -->
+      <div id="settings-screen" style="display: none;">
+        <h2>Select Difficulty:</h2>
+        <div>
+          <button class="difficulty-button" data-difficulty="easy">Easy</button>
+          <button class="difficulty-button" data-difficulty="medium">Medium</button>
+          <button class="difficulty-button" data-difficulty="hard">Hard</button>
         </div>
       </div>
+
 
       <!-- #game-screen is initially hidden using CSS style display: none -->
       <div id="game-screen">
@@ -51,11 +62,12 @@
         <div id="saxon-village"></div>
       </div>
 
-      <!-- #game-end is initially hidden using CSS style display: none -->
       <div id="game-end" style="display: none">
         <div>
           <img src="./images/logo.png" alt="" class="logo-img" />
           <h1>Game Over</h1>
+          <div id="game-end-content">
+          </div>
           <button id="back-to-menu">Back to Menu</button>
         </div>
       </div>      
