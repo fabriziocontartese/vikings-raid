@@ -5,6 +5,10 @@ class Soldier {
         this.strength = strength;
         this.game = game;
         this.id = document.getElementById(elementId);
+        if (!this.id) {
+            console.error(`Could not find element for Soldier ID: ${elementId}`);
+            return;
+        }
     
         this.id.style.position = "absolute";
     
@@ -37,12 +41,16 @@ class Soldier {
 
     receiveDamage(damage) {
         this.health -= damage;
-        if (this.health <= 0) {
+        this.health = Math.max(this.health, 0); // Clamp to 0
+    
+        if (this.health === 0) {
             this.id.style.opacity = 0.5;
             this.id.style.pointerEvents = "none";
         }
+    
         this.updateStats();
     }
+    
     
 
     moveTo(x, y) {

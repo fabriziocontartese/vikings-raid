@@ -1,37 +1,27 @@
-# 2025.07.15
+# 🛡️ Vikings' Raid
 
-1. File Structure & links between files
-2. Main Menu with functional Start Button, which
-   - Hides Main Menu
-   - "Display: Flex" game-screen
-   - Console.log Vikings & Saxons hardcoded in the units file
+**Vikings' Raid** is a pixel-art, turn-based web strategy game where you lead a group of Viking warriors to raid a Saxon village. Choose your squad, strategize your attacks, and conquer all enemies before they take you down.
 
-**Prios for next time:**
+---
 
-- Game-screen layout (add background and arrange the divs)
-- Create red and blue squares as placeholders for the Vikings & Saxons
-- Code the fighting logic by which I can click on one to select, then click on the other to attack
-- Code the death and deletion of the squares when health <= 0
-- If time allows: create animations in which squares go to the selected target, stay there 2 seconds, and then go back.
+## 🎮 Gameplay
 
-# 2025.07.17
-
-- Game screen done with boxes
-- Made the attacks work
+- Select **4 vikings** from the Viking ship.
+- Each viking has unique stats: ❤️ Health and ⚔️ Strength.
+- Choose a **difficulty level**: Easy, Medium, or Hard.
+- Take turns attacking Saxons. Each Viking can attack once per turn.
+- Defeat all Saxons to win — but if all Vikings fall, the Saxons win.
 
 
-**Prios for next time:**
+---
 
-- The game ends if one of the sides is all dead
-- Make it look cool
-- Add animations
+## 🧱 Tech Stack
 
+- **HTML** — Structure
+- **CSS** — Pixel-art style + animations + layout
+- **JavaScript** — Game logic, turn management, DOM manipulation
 
-**FINAL ITERATION:**
-ADD CHARACTER SELECTION BY...
-1. CHANGING THE DIFFICULTY BUTTONS TO NOT LEAD TO GAME BUT TO CHARACTER SELECTION FIRST
-2. SHOWING VIKING SHIP IN SETTINGS SCREEN AFTER CLICKING ON DIFFICULTY
-3. MAKE THEM CLICKABLE
-4. CREATING EMPTY ARRAY WHERE TO STORE THE VIKINGS SELECTED
-5. CHANGING THE AddSoldiers() SO THAT IT ADDS THE ONES THAT HAVE BEEN SELECTED
- 
+---
+
+## 🐙 Easter Egg
+You can summon a hidden sea creature with overwhelming power to fight along you... If you can find it!

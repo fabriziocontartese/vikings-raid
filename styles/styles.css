@@ -34,6 +34,87 @@ background-repeat: no-repeat;
 background-image: url('../images/battlefield.png');
 }
 
+#viking-selector {
+    display: flex;
+    flex-direction: row;
+    width: 800px;
+    height: 400px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url('../images/viking-ship-in-water.png');
+}
+
+.viking-select {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+
+#viking-one-select {
+    top: 260px;
+    left: 550px;
+    background-image: url('../images/Viking1.png');
+}
+
+#viking-two-select {
+    top: 260px;
+    left: 650px;
+    background-image: url('../images/Viking2.png');
+}
+
+#viking-three-select {
+    top: 260px;
+    left: 750px;
+    background-image: url('../images/Viking3.png');
+}
+
+#viking-four-select {
+    top: 260px;
+    left: 850px;
+    background-image: url('../images/Viking4.png');
+}
+
+#viking-five-select {
+    top: 340px;
+    left: 550px;
+    background-image: url('../images/Viking5.png');
+}
+
+#viking-six-select {
+    top: 340px;
+    left: 650px;
+    background-image: url('../images/Viking6.png');
+}
+
+#viking-seven-select {
+    top: 340px;
+    left: 750px;
+    background-image: url('../images/Viking7.png');
+}
+
+#viking-eight-select {
+    top: 340px;
+    left: 850px;
+    background-image: url('../images/Viking8.png');
+}
+
+#kraken-select {
+    top: 200px;
+    left: 350px;
+    opacity: 0.4;
+    background-image: url('../images/KrakenTentacle.png');
+}
+
+#difficulty-selector {
+    display: none;
+}
+
+
 #game-end {
 display: none;
 flex-direction: column;
@@ -74,25 +155,21 @@ font-size: 14px;
 #viking-one {
     top: 50px;
     left: 350px;
-    background-image: url('../images/viking1.png');
 }
 
 #viking-two {
     top: 250px;
     left: 350px;
-    background-image: url('../images/Viking2.png');
 }
 
 #viking-three {
     top: 450px;
     left: 350px;
-    background-image: url('../images/Viking3.png');
 }
 
 #viking-four {
     top: 650px;
     left: 350px;
-    background-image: url('../images/Viking4.png');
 }
 
 
